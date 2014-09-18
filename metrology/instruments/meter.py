@@ -30,9 +30,9 @@ class Meter(object):
         self.last_tick = AtomicLong(self.start_time)
 
         self.interval = EWMA.INTERVAL
-        self.m1_rate = EWMA.m1()
-        self.m5_rate = EWMA.m5()
-        self.m15_rate = EWMA.m15()
+        self.minute1_rate = EWMA.m1()
+        self.minute5_rate = EWMA.m5()
+        self.minute15_rate = EWMA.m15()
 
     def _tick(self):
         old_tick, new_tick = self.last_tick.value, time()
@@ -52,9 +52,9 @@ class Meter(object):
         self.counter.value = 0
         self.start_time = time()
 
-        self.m1_rate.clear()
-        self.m5_rate.clear()
-        self.m15_rate.clear()
+        self.minute1_rate.clear()
+        self.minute5_rate.clear()
+        self.minute15_rate.clear()
 
     @ticker
     def mark(self, value=1):
@@ -63,32 +63,32 @@ class Meter(object):
         :param value: number of event to record
         """
         self.counter += value
-        self.m1_rate.update(value)
-        self.m5_rate.update(value)
-        self.m15_rate.update(value)
+        self.minute1_rate.update(value)
+        self.minute5_rate.update(value)
+        self.minute15_rate.update(value)
 
     def tick(self):
-        self.m1_rate.tick()
-        self.m5_rate.tick()
-        self.m15_rate.tick()
+        self.minute1_rate.tick()
+        self.minute5_rate.tick()
+        self.minute15_rate.tick()
 
     @property
     @ticker
     def m1_rate(self):
         """Returns the one-minute average rate."""
-        return self.m1_rate.rate
+        return self.minute1_rate.rate
 
     @property
     @ticker
     def m5_rate(self):
         """Returns the five-minute average rate."""
-        return self.m5_rate.rate
+        return self.minute5_rate.rate
 
     @property
     @ticker
     def m15_rate(self):
         """Returns the fifteen-minute average rate."""
-        return self.m15_rate.rate
+        return self.minute15_rate.rate
 
     @property
     def mean_rate(self):
