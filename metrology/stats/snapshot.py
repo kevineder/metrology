@@ -44,21 +44,21 @@ class Snapshot(object):
         return self.value(self.MEDIAN_Q)
 
     @property
-    def percentile_75th(self):
+    def p75(self):
         return self.value(self.P75_Q)
 
     @property
-    def percentile_95th(self):
+    def p95(self):
         return self.value(self.P95_Q)
 
     @property
-    def percentile_98th(self):
+    def p98(self):
         return self.value(self.P98_Q)
 
     @property
-    def percentile_99th(self):
+    def p99(self):
         return self.value(self.P99_Q)
 
     @property
-    def percentile_999th(self):
+    def p999(self):
         return self.value(self.P999_Q)

@@ -27,8 +27,8 @@ class LoggerReporter(Reporter):
         for name, metric in self.registry:
             if isinstance(metric, Meter):
                 self.log_metric(name, 'meter', metric, [
-                    'count', 'one_minute_rate', 'five_minute_rate',
-                    'fifteen_minute_rate', 'mean_rate'
+                    'count', 'm1_rate', 'm5_rate',
+                    'm15_rate', 'mean_rate'
                 ])
             if isinstance(metric, Gauge):
                 self.log_metric(name, 'gauge', metric, [
@@ -36,21 +36,21 @@ class LoggerReporter(Reporter):
                 ])
             if isinstance(metric, UtilizationTimer):
                 self.log_metric(name, 'timer', metric, [
-                    'count', 'one_minute_rate', 'five_minute_rate',
-                    'fifteen_minute_rate', 'mean_rate',
+                    'count', 'm1_rate', 'm5_rate',
+                    'm15_rate', 'mean_rate',
                     'min', 'max', 'mean', 'stddev',
                     'one_minute_utilization', 'five_minute_utilization',
                     'fifteen_minute_utilization', 'mean_utilization'
                 ], [
-                    'median', 'percentile_95th'
+                    'median', 'p95'
                 ])
             if isinstance(metric, Timer):
                 self.log_metric(name, 'timer', metric, [
-                    'count', 'one_minute_rate', 'five_minute_rate',
-                    'fifteen_minute_rate', 'mean_rate',
+                    'count', 'm1_rate', 'm5_rate',
+                    'm15_rate', 'mean_rate',
                     'min', 'max', 'mean', 'stddev'
                 ], [
-                    'median', 'percentile_95th'
+                    'median', 'p95'
                 ])
             if isinstance(metric, Counter):
                 self.log_metric(name, 'counter', metric, [
@@ -60,7 +60,7 @@ class LoggerReporter(Reporter):
                 self.log_metric(name, 'histogram', metric, [
                     'count', 'min', 'max', 'mean', 'stddev',
                 ], [
-                    'median', 'percentile_95th'
+                    'median', 'p95'
                 ])
 
     def log_metric(self, name, type, metric, keys, snapshot_keys=None):

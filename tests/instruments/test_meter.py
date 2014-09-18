@@ -20,10 +20,10 @@ class MeterTest(TestCase):
         self.meter.mark(3)
         self.assertEqual(3, self.meter.count)
 
-    def test_one_minute_rate(self):
+    def test_m1_rate(self):
         self.meter.mark(1000)
         self.meter.tick()
-        self.assertEqual(200, self.meter.one_minute_rate)
+        self.assertEqual(200, self.meter.m1_rate)
 
     def test_meter_threaded(self):
         def mark():

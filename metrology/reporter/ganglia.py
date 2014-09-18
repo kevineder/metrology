@@ -36,9 +36,9 @@ class GangliaReporter(Reporter):
         for name, metric in self.registry:
             if isinstance(metric, Meter):
                 self.send(name, 'Count', metric.count, 'int32', 'count')
-                self.send(name, 'One Minute Rate', metric.one_minute_rate, 'double', 'per second')
-                self.send(name, 'Five Minute Rate', metric.five_minute_rate, 'double', 'per second')
-                self.send(name, 'Fifteen Minute Rate', metric.fifteen_minute_rate, 'double', 'per second')
+                self.send(name, 'One Minute Rate', metric.m1_rate, 'double', 'per second')
+                self.send(name, 'Five Minute Rate', metric.m5_rate, 'double', 'per second')
+                self.send(name, 'Fifteen Minute Rate', metric.m15_rate, 'double', 'per second')
                 self.send(name, 'Mean Rate', metric.mean_rate, 'double', 'per second')
             elif isinstance(metric, Gauge):
                 self.send(name, 'Value', metric.value(), 'int32', 'value')

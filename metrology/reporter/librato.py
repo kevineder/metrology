@@ -42,8 +42,8 @@ class LibratoReporter(Reporter):
         for name, metric in self.registry:
             if isinstance(metric, Meter):
                 yield self.prepare_metric(name, 'meter', metric, [
-                    'count', 'one_minute_rate', 'five_minute_rate',
-                    'fifteen_minute_rate', 'mean_rate'
+                    'count', 'm1_rate', 'm5_rate',
+                    'm15_rate', 'mean_rate'
                 ])
             if isinstance(metric, Gauge):
                 yield self.prepare_metric(name, 'gauge', metric, [
@@ -51,21 +51,21 @@ class LibratoReporter(Reporter):
                 ])
             if isinstance(metric, UtilizationTimer):
                 yield self.prepare_metric(name, 'timer', metric, [
-                    'count', 'one_minute_rate', 'five_minute_rate',
-                    'fifteen_minute_rate', 'mean_rate',
+                    'count', 'm1_rate', 'm5_rate',
+                    'm15_rate', 'mean_rate',
                     'min', 'max', 'mean', 'stddev',
                     'one_minute_utilization', 'five_minute_utilization',
                     'fifteen_minute_utilization', 'mean_utilization'
                 ], [
-                    'median', 'percentile_95th'
+                    'median', 'p95'
                 ])
             if isinstance(metric, Timer):
                 yield self.prepare_metric(name, 'timer', metric, [
-                    'count', 'one_minute_rate', 'five_minute_rate',
-                    'fifteen_minute_rate', 'mean_rate',
+                    'count', 'm1_rate', 'm5_rate',
+                    'm15_rate', 'mean_rate',
                     'min', 'max', 'mean', 'stddev'
                 ], [
-                    'median', 'percentile_95th'
+                    'median', 'p95'
                 ])
             if isinstance(metric, Counter):
                 yield self.prepare_metric(name, 'counter', metric, [
@@ -75,7 +75,7 @@ class LibratoReporter(Reporter):
                 yield self.prepare_metric(name, 'histogram', metric, [
                     'count', 'min', 'max', 'mean', 'stddev',
                 ], [
-                    'median', 'percentile_95th'
+                    'median', 'p95'
                 ])
 
     def write(self):

@@ -19,10 +19,10 @@ class DeriveTest(TestCase):
         self.derive.mark(3)
         self.assertEqual(3, self.derive.count)
 
-    def test_one_minute_rate(self):
+    def test_m1_rate(self):
         self.derive.mark(1000)
         self.derive.tick()
-        self.assertEqual(200, self.derive.one_minute_rate)
+        self.assertEqual(200, self.derive.m1_rate)
 
     def tearDown(self):
         self.derive.stop()

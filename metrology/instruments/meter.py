@@ -74,19 +74,19 @@ class Meter(object):
 
     @property
     @ticker
-    def one_minute_rate(self):
+    def m1_rate(self):
         """Returns the one-minute average rate."""
         return self.m1_rate.rate
 
     @property
     @ticker
-    def five_minute_rate(self):
+    def m5_rate(self):
         """Returns the five-minute average rate."""
         return self.m5_rate.rate
 
     @property
     @ticker
-    def fifteen_minute_rate(self):
+    def m15_rate(self):
         """Returns the fifteen-minute average rate."""
         return self.m15_rate.rate
 

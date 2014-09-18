@@ -45,19 +45,19 @@ class Timer(object):
         return self.histogram.count
 
     @property
-    def one_minute_rate(self):
+    def m1_rate(self):
         """Returns the one-minute average rate."""
-        return self.meter.one_minute_rate
+        return self.meter.m1_rate
 
     @property
-    def five_minute_rate(self):
+    def m5_rate(self):
         """Returns the five-minute average rate."""
-        return self.meter.five_minute_rate
+        return self.meter.m5_rate
 
     @property
-    def fifteen_minute_rate(self):
+    def m15_rate(self):
         """Returns the fifteen-minute average rate."""
-        return self.meter.fifteen_minute_rate
+        return self.meter.m15_rate
 
     @property
     def mean_rate(self):
@@ -113,17 +113,17 @@ class UtilizationTimer(Timer):
     @property
     def one_minute_utilization(self):
         """Returns the one-minute average utilization as a percentage."""
-        return self.duration_meter.one_minute_rate
+        return self.duration_meter.m1_rate
 
     @property
     def five_minute_utilization(self):
         """Returns the five-minute average utilization as a percentage."""
-        return self.duration_meter.five_minute_rate
+        return self.duration_meter.m5_rate
 
     @property
     def fifteen_minute_utilization(self):
         """Returns the fifteen-minute average utilization as a percentage."""
-        return self.duration_meter.fifteen_minute_rate
+        return self.duration_meter.m15_rate
 
     @property
     def mean_utilization(self):
